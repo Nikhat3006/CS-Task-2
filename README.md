@@ -1,12 +1,14 @@
+# Description
+
 This project provides a Python script that demonstrates creating, encrypting, and decrypting images using the Pillow library and NumPy. The script allows you to generate a random image, encrypt it by inverting pixel values, and then decrypt it back to its original form.
 
-## Features
+# Features
 
 - *Create a Sample Image*: Generates a 100x100 image with random pixel values and saves it as input_image.png.
 - *Encrypt an Image*: Inverts pixel values of the image to create an encrypted version saved as encrypted_image.png.
 - *Decrypt an Image*: Reverts the pixel values to recover the original image and saves it as decrypted_image.png.
 
-## Prerequisites
+# Prerequisites
 
 Ensure you have the following Python packages installed:
 - Pillow (PIL)
@@ -18,7 +20,7 @@ bash
 pip install Pillow numpy
 
 
-## Usage
+# Usage
 
 1. *Create a Sample Image*: 
    Generates a 100x100 pixel image with random colors and saves it as input_image.png.
@@ -38,7 +40,7 @@ pip install Pillow numpy
    decrypt_image('encrypted_image.png', 'decrypted_image.png')
    
 
-## Example Workflow
+# Example Workflow
 
 By running the script, you will:
 1. Generate a sample image (input_image.png).
