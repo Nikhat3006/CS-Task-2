@@ -1,52 +1,47 @@
-def check_password_strength(password):
-    # Initialize score and feedback
-    score = 0
-    feedback = []
+def encrypt_image(input_path, output_path, key):
+    img = Image.open(input_path)
+    pixels = img.load()
 
-    # Check password length
-    if len(password) >= 8:
-        score += 1
-    else:
-        feedback.append("Password should be at least 8 characters long.")
+    width, height = img.size
 
-    # Check for uppercase letters
-    if re.search(r'[A-Z]', password):
-        score += 1
-    else:
-        feedback.append("Password should contain at least one uppercase letter.")
+    for i in range(width):
+        for j in range(height):
+            r, g, b = pixels[i, j]
 
-    # Check for lowercase letters
-    if re.search(r'[a-z]', password):
-        score += 1
-    else:
-        feedback.append("Password should contain at least one lowercase letter.")
+            # swapping red and blue channels
+            encrypted_pixel = (b, g, r)
 
-    # Check for numbers
-    if re.search(r'[0-9]', password):
-        score += 1
-    else:
-        feedback.append("Password should contain at least one number.")
+            pixels[i, j] = encrypted_pixel
 
-    # Check for special characters
-    if re.search(r'[\W_]', password):  # \W matches any non-alphanumeric character (special character)
-        score += 1
-    else:
-        feedback.append("Password should contain at least one special character.")
+    img.save(output_path)
+    print("Image encrypted successfully!")
 
-    # Assess the password strength
-    if score == 5:
-        return "Strong Password!", feedback
-    elif score >= 3:
-        return "Moderate Password.", feedback
-    else:
-        return "Weak Password!", feedback
+def decrypt_image(input_path, output_path, key):
+    img = Image.open(input_path)
+    pixels = img.load()
 
-# Example usage
-password = input("Enter your password: ")
-strength, feedback = check_password_strength(password)
+    width, height = img.size
 
-print(f"Password Strength: {strength}")
-if feedback:
-    print("Suggestions:")
-    for suggestion in feedback:
-        print(f"- {suggestion}")
+    for i in range(width):
+        for j in range(height):
+            r, g, b = pixels[i, j]
+
+            # swapping red and blue channels back
+            decrypted_pixel = (b, g, r)
+
+            pixels[i, j] = decrypted_pixel
+
+    img.save(output_path)
+    print("Image decrypted successfully!")
+
+ # image path
+input_image = r"D:\task2\input_image.jpg"
+encrypted_image = r"D:\task2\decrypted_image.jpg"
+decrypted_image = r"D:\task2\encrypted_image.jpg"
+
+
+# Encrypt the image
+encrypt_image(input_image, encrypted_image, key=None)
+
+# Decrypt the image
+decrypt_image(encrypted_image, decrypted_image, key=None)
